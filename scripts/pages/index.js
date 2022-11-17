@@ -1,9 +1,9 @@
 async function getPhotographers() {
     // Penser à remplacer par les données récupérées dans le json
     const photographers = [
-    fetch(photographersCard)
-  .then(function(photographersCard) {
-    if (photographersCard.ok) {
+    fetch("photographersCard.js")
+  .then(function(photographers) {
+    if (photographers.ok) {
       return photographers.json();
     }
   })
