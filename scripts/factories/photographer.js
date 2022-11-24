@@ -12,10 +12,9 @@ function photographerFactory(data) {
 
     function getUserCardDOM() {
         const article = document.createElement('article')
-        let href = './photographer.html?id=' + id
 
         article.innerHTML =
-        `<a href="${href}">
+        `<a href="./photographer.html?id=' + id">
             <img class="profil" src="assets/photographers/${portrait}" alt="Photo de profil de ${name}">
             <h2 class="name"> ${name} </h2>
         </a>
