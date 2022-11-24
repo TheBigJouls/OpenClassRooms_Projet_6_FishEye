@@ -1,23 +1,19 @@
 async function getPhotographers() {
-    // Penser à remplacer par les données récupérées dans le json
-    const photographers = [
-    fetch(photographersCard)
-  .then(function(photographersCard) {
-    if (photographersCard.ok) {
-      return photographers.json();
-    }
-  })
-  .then(function(value) {
-    console.log(value);
-  })
-  .catch(function(err) {
-    // Une erreur est survenue
-  })
-]
-    // et bien retourner le tableau photographers seulement une fois
-  //  return ({
-    //    photographers: [...photographers, ...photographers, ...photographers]})
-    }
+  return fetch("./data/photographers.json")
+      .then(function (response) {
+          if (response.ok) {
+              return response.json();
+          }
+      })
+      .then(function (data) {
+          return data;
+          
+      })
+      .catch(function (error) {
+          console.log(error);
+      });
+      
+}
 
     async function displayData(photographers) {
         const photographersSection = document.querySelector(".photographer_section");
