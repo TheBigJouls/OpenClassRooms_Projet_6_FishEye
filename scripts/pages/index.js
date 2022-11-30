@@ -2,13 +2,12 @@ async function getPhotographers() {
   return fetch("./data/photographers.json")
       .then(function (response) {
           if (response.ok) {
+            console.log(response.json());
               return response.json();
+              
           }
       })
-      .then(function (data) {
-          return data;
-          
-      })
+      
       .catch(function (error) {
           console.log(error);
       });

@@ -14,7 +14,7 @@ function photographerFactory(data) {
         const article = document.createElement('article')
 
         article.innerHTML =
-        `<a href="./photographer.html?id="${id}">
+        `<a href="./photographer.html?id=' + id">
             <img class="profil" src="assets/photographers/${portrait}" alt="Photo de profil de ${name}">
             <h2 class="name"> ${name} </h2>
         </a>
