@@ -7,10 +7,7 @@ async function getPhotographers() {
               
           }
       })
-      .then(function (data) {
-          return data;
-          
-      })
+    
       .catch(function (error) {
           console.log(error);
       });
