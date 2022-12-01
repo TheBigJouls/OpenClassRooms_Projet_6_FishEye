@@ -1,4 +1,4 @@
-function photographerFactory(data) {
+function mediaFactory(mediaData) {
     const {
         name,
         id,
@@ -7,10 +7,10 @@ function photographerFactory(data) {
         tagline,
         price,
         portrait
-    } = data;
+    } = mediaData;
 
 
-    function getUserCardDOM() {
+    function getMediaCardDOM() {
         const article = document.createElement('article')
 
         article.innerHTML =
@@ -26,6 +26,6 @@ function photographerFactory(data) {
         return (article);
     }
     return {
-        getUserCardDOM
+        getMediaCardDOM
     }
 }
