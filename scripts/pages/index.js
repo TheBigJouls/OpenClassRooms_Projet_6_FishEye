@@ -4,9 +4,13 @@ async function getPhotographers() {
           if (response.ok) {
             console.log(response);
               return response.json();
+              
           }
       })
-      
+      .then(function (data) {
+          return data;
+          
+      })
       .catch(function (error) {
           console.log(error);
       });
