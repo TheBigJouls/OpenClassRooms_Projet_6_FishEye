@@ -20,6 +20,7 @@ async function getPhotographers() {
         
   }
 
+  // Affiche les données récupérées avec media factory
 async function displayData(medias, photographer) {
     mediaFactory.createMediaCard(medias, photographer);
     mediaFactory.createPhotographerHeader();
@@ -27,9 +28,9 @@ async function displayData(medias, photographer) {
     mediaFactory.createSortList();
 }
 
- 
+    //Initialise l'affichage des données une fois que la récupération et l'affichage sont prêts
 async function init() {
-    //Get data for photographers and media
+    
     const { photographers, media } = await getPhotographers();
     const currentPhotographer = photographers.find(id => id.id == photographerId);
     const currentMedias = media.filter(media => media.photographerId == photographerId);
