@@ -1,18 +1,11 @@
 //Mettre le code JavaScript lié à la page photographer.html
 
+//Récupère l'ID du photographe recherché dans l'URL
 const photographerUrl = window.location.search;
 const urlParams = new URLSearchParams(photographerUrl);
 const photographerId = urlParams.get("id");
-
-function getPhotographerId() {
-    const photographerUrl = window.location.search;
-    const urlParams = new URLSearchParams(photographerUrl);
-    const photographerId = urlParams.get("id");
    
-    return photographerId
-
-}
-
+// Récupère les données du fichier json
 async function getPhotographers() {
     return fetch("./data/photographers.json")
         .then(function (response) {
@@ -26,19 +19,23 @@ async function getPhotographers() {
         });
         
   }
-  
-    // filtrer le photohrapgra et ses médias
-    // display data photographe et display media =>factory
-  
-      async function init() {
-          // Récupère les datas des photographes
-          const { photographers, media } = await getPhotographers();
-         const photographerId = await getPhotographerId();
-        const photographerMedias = media.filter (media => media.photographerId == photographerId);
-        // index.js  displayData(photographers);
-        console.log(photographerMedias)
-      };
-      
 
-      init();
-      
+async function displayData(medias, photographer) {
+    mediaFactory.createMediaCard(medias, photographer);
+    mediaFactory.createPhotographerHeader();
+    mediaFactory.displayNameInModal();
+    mediaFactory.createSortList();
+}
+
+ 
+async function init() {
+    //Get data for photographers and media
+    const { photographers, media } = await getPhotographers();
+    const currentPhotographer = photographers.find(id => id.id == photographerId);
+    const currentMedias = media.filter(media => media.photographerId == photographerId);
+    
+    displayData(currentMedias, currentPhotographer);
+}
+
+init();
+console.log(displayData)
