@@ -24,8 +24,6 @@ async function getPhotographers() {
 async function displayData(medias, photographer) {
     mediaFactory.createMediaCard(medias, photographer);
     mediaFactory.createPhotographerHeader();
-    mediaFactory.displayNameInModal();
-    mediaFactory.createSortList();
 }
 
     //Initialise l'affichage des données une fois que la récupération et l'affichage sont prêts
