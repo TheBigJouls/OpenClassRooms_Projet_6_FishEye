@@ -20,21 +20,19 @@ async function getPhotographers() {
         
   }
 
-  // Affiche les données récupérées avec media factory
-async function displayData(medias, photographer) {
-    mediaFactory.createMediaCard(medias, photographer);
-    mediaFactory.createPhotographerHeader();
+  async function displayData(currentMedias, currentPhotographer) {
+    const currentMediaFactory = new MediaFactory();
+    currentMediaFactory.createMediaCard(currentMedias);
+    currentMediaFactory.createPhotographerHeader(currentPhotographer);
 }
 
-    //Initialise l'affichage des données une fois que la récupération et l'affichage sont prêts
 async function init() {
-    
     const { photographers, media } = await getPhotographers();
     const currentPhotographer = photographers.find(id => id.id == photographerId);
     const currentMedias = media.filter(media => media.photographerId == photographerId);
-    
+    console.log(currentMedias);
+    console.log(currentPhotographer);
     displayData(currentMedias, currentPhotographer);
 }
 
 init();
-console.log(displayData)
