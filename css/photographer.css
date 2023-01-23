@@ -1,3 +1,4 @@
+
 #contact_modal {
     display: none;
 }
@@ -6,6 +7,38 @@
     background-color: #FAFAFA;
     height: 300px;
     margin: 0 100px;
+    padding: 40px;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.photograph-header img {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 1px 1px 15px rgba(150, 150, 150, 0.5);
+    margin-left: 200px;
+  }
+
+  .photograph-header .infos {
+    order:1;
+  }
+
+  .photograph-header h2 {
+    font-size: 60px;
+    font-weight: 400;
+    color: #D3573C;
+    width: 400px;
+    margin: 0 0 20px 0;
+    line-height: 0.8;
+  }
+
+  .photograph-header p:first-child {
+    color: #901C1C;
+    font-size: 22px;
 }
 
 .contact_button {
@@ -59,6 +92,8 @@ form label {
     color: #312E2E;
     font-size: 36px;
 }
+
+
 
 form div {
     display: flex;
