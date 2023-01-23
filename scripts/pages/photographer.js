@@ -19,12 +19,25 @@ async function getPhotographers() {
         });
         
   }
-
+//forEach
   async function displayData(currentMedias, currentPhotographer) {
-    const currentMediaFactory = new MediaFactory();
-    currentMediaFactory.createMediaCard(currentMedias);
-    currentMediaFactory.createPhotographerHeader(currentPhotographer);
+    const photoSection = document.querySelector(".photograph-header");
+    const photographerFactory = new PhotographerFactory(currentPhotographer);
+    const header = photographerFactory.getUserHeaderCardDOM()
+    photoSection.appendChild(header)
+
+    const mediasSection = document.querySelector(".media-section");
+    currentMedias.forEach((media) => {
+
+        const photographerMedia = new MediaFactory(media, currentPhotographer);
+        const mediaCardDOM = photographerMedia.getMediaCardDOM();
+        mediasSection.appendChild(mediaCardDOM);
+
+    });
 }
+
+   
+
 
 async function init() {
     const { photographers, media } = await getPhotographers();

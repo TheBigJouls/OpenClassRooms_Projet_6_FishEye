@@ -16,7 +16,7 @@ class PhotographerFactory {
         article.innerHTML =
         `<a href="./photographer.html?id=${this.id}">
             <img class="profil" src="assets/photographers/${this.portrait}" alt="Photo de profil de ${name}">
-            <h2> ${name} </h2>
+            <h2> ${this.name} </h2>
         </a>
         <div>
             <p> ${this.city}, ${this.country} </p>
@@ -26,6 +26,26 @@ class PhotographerFactory {
         return (article);
     }
 
+    getUserHeaderCardDOM() {
+        const articleInfos = document.createElement('article')
+        //Comment faire pour que le bouton 
+        // <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        // se retrouve entre les infos du photographe et l'image du photographe ?
+     articleInfos.innerHTML =
+        `
+        <a href="./photographer.html?id=${this.id}">
+        <h2> ${this.name} </h2>
+        </a>
+        <div>
+            <p> ${this.city}, ${this.country} </p>
+            <p> ${this.tagline} </p>
+        </div>
+        
+        <img class="profil" src="assets/photographers/${this.portrait}" alt="Photo de profil de ${this.name}">
+        `
+
+        return (articleInfos);
+    }
 }
 // logique des likes 
 // lightbox
