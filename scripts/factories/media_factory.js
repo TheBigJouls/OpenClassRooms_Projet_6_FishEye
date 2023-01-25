@@ -4,10 +4,14 @@ class MediaFactory {
         this.image = mediaData.image;
         this.title = mediaData.title;
         this.video = mediaData.video;
+        this.likes = mediaData.likes;
         this.name = photographerData.name;
-        const nameOfPhotographer = this.name.split(" ");
-        const pathName = nameOfPhotographer[0].replace("-"," ");
-        this.mediaPath = `assets/photographers/${this.name}/${this.image ? this.image : this.video}`;
+        const photographerName = this.name.split(" ");
+        const firstName = photographerName[0];
+        this.mediaPath = `assets/photographers/${firstName}/${this.image ? this.image : this.video}`;
+       
+
+        
     }
     getMediaCardDOM() {
         //DOM éléments de media card
@@ -15,14 +19,16 @@ class MediaFactory {
         const p = document.createElement("p");
         const media = document.createElement(this.image ? "img" : "video");
        
+        const likeButton = document.createElement("i");
+        const likeCounter = document.createElement("p");
+       
        //Texte inséré en éléments HTML
         p.textContent = `${this.title}`;
-        
-        div.appendChild(p);
+        likeCounter.textContent = `${this.likes}`;
+        media.src = this.mediaPath;
         div.appendChild(media);
-
-        //Ajout éléments créés dans le DOM
-     
+        div.appendChild(p);
+        div.appendChild(likeCounter);
 
         return div;
 

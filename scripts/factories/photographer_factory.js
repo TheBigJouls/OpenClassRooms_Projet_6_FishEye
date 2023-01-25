@@ -16,7 +16,7 @@ class PhotographerFactory {
         article.innerHTML =
         `<a href="./photographer.html?id=${this.id}">
             <img class="profil" src="assets/photographers/${this.portrait}" alt="Photo de profil de ${name}">
-            <h2> ${this.name} </h2>
+            <h1> ${this.name} </h1>
         </a>
         <div>
             <p> ${this.city}, ${this.country} </p>
@@ -28,20 +28,21 @@ class PhotographerFactory {
 
     getUserHeaderCardDOM() {
         const articleInfos = document.createElement('article')
-        //Comment faire pour que le bouton 
-        // <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
-        // se retrouve entre les infos du photographe et l'image du photographe ?
      articleInfos.innerHTML =
         `
+        <div class="photographer_info">
         <a href="./photographer.html?id=${this.id}">
-        <h2> ${this.name} </h2>
+        <h1> ${this.name} </h1>
         </a>
-        <div>
             <p> ${this.city}, ${this.country} </p>
             <p> ${this.tagline} </p>
         </div>
-        
+        <div class="photographer_contact_button">
+        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        </div>
+        <div class="photographer_img">
         <img class="profil" src="assets/photographers/${this.portrait}" alt="Photo de profil de ${this.name}">
+        </div> 
         `
 
         return (articleInfos);
