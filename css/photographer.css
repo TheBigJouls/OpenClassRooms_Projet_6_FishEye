@@ -142,14 +142,16 @@ form input {
     
 }
 
-.media-section > div {
+.eachcard {
     position: relative;
     width: 360px;
     margin: 20px;
-
+    display:flex;
+    flex-direction: column;
+  
 }
 
-.media-section > div img, .media-section > div video {
+.eachcard img, .eachcard video {
         height: 300px;
         width: 100%;
         border-radius: 5px;
@@ -158,10 +160,33 @@ form input {
         transition: 0.2s;
       }
 
-      .media-section  p {
+.infocard {
         color: #901C1C;
-    font-size: 22px;
+        font-size: 22px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: baseline;
       }
+
+      .infocard span {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: baseline;
+      }
+
+      .infocard span p {
+        margin-right:5px;
+      }
+
+      .total-like {
+        position:absolute;
+        bottom:0;
+        right:0;
+        width:50px;
+      }
+
       /*
       #medias_section {
   display: grid;
