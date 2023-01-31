@@ -21,24 +21,35 @@ async function getPhotographers() {
   }
 //forEach
   async function displayData(currentMedias, currentPhotographer) {
+
     const photoSection = document.querySelector(".photograph-header");
+    // eslint-disable-next-line no-undef
     const photographerFactory = new PhotographerFactory(currentPhotographer);
     const header = photographerFactory.getUserHeaderCardDOM()
     photoSection.appendChild(header)
 
     const mediasSection = document.querySelector(".media-section");
+    let totalLikesCount = 0;
+    this.totalLikesCount = totalLikesCount;
+    
     currentMedias.forEach((media) => {
-
+        
+        this.totalLikesCount += media.likes;
+        console.log(this.totalLikesCount)
+        
+        
+        // eslint-disable-next-line no-undef
         const photographerMedia = new MediaFactory(media, currentPhotographer);
         const mediaCardDOM = photographerMedia.getMediaCardDOM();
         mediasSection.appendChild(mediaCardDOM);
-
+     
+        
     });
+
+
 }
 
    
-
-
 async function init() {
     const { photographers, media } = await getPhotographers();
     const currentPhotographer = photographers.find(id => id.id == photographerId);

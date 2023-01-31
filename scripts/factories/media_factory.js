@@ -1,63 +1,74 @@
+// eslint-disable-next-line no-unused-vars
 class MediaFactory {
-    constructor(mediaData, photographerData) {
-        this.mediaData = mediaData;
-        this.image = mediaData.image;
-        this.title = mediaData.title;
-        this.video = mediaData.video;
-        this.likes = mediaData.likes;
-        this.name = photographerData.name;
-        const photographerName = this.name.split(" ");
-        const firstName = photographerName[0];
-        this.mediaPath = `assets/photographers/${firstName}/${this.image ? this.image : this.video}`;
-       
+  constructor(mediaData, photographerData) {
+      this.mediaData = mediaData;
+      this.image = mediaData.image;
+      this.title = mediaData.title;
+      this.video = mediaData.video;
+      this.likes = mediaData.likes;
+      this.name = photographerData.name;
+      this.price = photographerData.price;
+      const photographerName = this.name.split(" ");
+      const firstName = photographerName[0];
+      this.mediaPath = `assets/photographers/${firstName}/${this.image ? this.image : this.video}`;
+      
+  }
+ 
 
-        
-    }
-    getMediaCardDOM() {
-        //DOM éléments de media card
-        const div = document.createElement("div");
-        const p = document.createElement("p");
-        const media = document.createElement(this.image ? "img" : "video");
-       
-        const likeButton = document.createElement("i");
-        const likeCounter = document.createElement("p");
-       
-       //Texte inséré en éléments HTML
-        p.textContent = `${this.title}`;
-        likeCounter.textContent = `${this.likes}`;
-        media.src = this.mediaPath;
-        div.appendChild(media);
-        div.appendChild(p);
-        div.appendChild(likeCounter);
+  getMediaCardDOM() {
+      //DOM éléments de media card
+      const eachCard = document.createElement("div");
+      const infoCard = document.createElement("div");
+      const p = document.createElement("p");
+      const media = document.createElement(this.image ? "img" : "video");
+     
+    
+      const likeBtn = document.createElement("span");
+      const likeHeart = document.createElement("i");
+      const likeCounter = document.createElement("p");
+    
+      
+      eachCard.classList.add("eachcard");
+      infoCard.classList.add("infocard");
+      likeHeart.classList.add("fa-regular", "fa-heart");
 
-        return div;
+      likeHeart.addEventListener("click", () => {
+          if (likeHeart.classList.contains("fa-regular")) {
+            likeHeart.classList.remove("fa-regular");
+            likeHeart.classList.add("fa-solid");
+            this.likes++;
+            likeCounter.textContent = `${this.likes}`;
 
-        
-    }
+          } else {
+            likeHeart.classList.remove("fa-solid");
+            likeHeart.classList.add("fa-regular");
+            this.likes--;
+            likeCounter.textContent = `${this.likes}`;
+           
+          }
+          
+          console.log(this.likes);
+        });
+
+     //Texte inséré en éléments HTML
+      p.textContent = `${this.title}`;
+      likeCounter.textContent = `${this.likes}`;
+      media.src = this.mediaPath;
+      eachCard.appendChild(media);
+      eachCard.appendChild(infoCard);
+      
+      infoCard.appendChild(p);
+      infoCard.appendChild(likeBtn);
+      likeBtn.appendChild(likeCounter);
+      likeBtn.appendChild(likeHeart);
+     
+      return eachCard;
+
+    
+  }
 
 
-//createMediaCard(currentMedias, currentPhotographer) {
-  //  const mediasSection = document.createElement("div");
-  //  mediasSection.id = "medias_section";
-   // const photographerSection = document.querySelector('.photographer_section');
-    //photographerSection.appendChild(mediasSection);
+ 
+ }
+ 
 
- //   this.currentPhotographer = currentPhotographer;
-
-    //Crée section pour chaque media dans le DOM ATTENTION CA PART DANS LE photographer.js
-  //  currentMedias.forEach((media) => {
-  //      const photographerMedia = new MediaFactory(media, currentPhotographer);
-   //     const mediaCardDOM = photographerMedia.getMediaCardDOM();
-    //    mediasSection.appendChild(mediaCardDOM.media);
-
- //   });
-//}
-
-//createPhotographerHeader() {
-    //Crée header infos photographe
-   // const photographHeader = document.querySelector(".photograph-header");
-   // const photographerInfo = new PhotographerFactory(this.currentPhotographer);
-   // à finir
-//}
-
-}
