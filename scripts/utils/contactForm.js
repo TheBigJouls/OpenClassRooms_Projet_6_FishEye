@@ -1,6 +1,6 @@
 const contactModal = document.getElementById("contact_modal");
 const contactBtn = document.querySelector(".contact_button");
-const formData = document.querySelectorAll(".formData");
+//const formData = document.querySelectorAll(".formData");
 
 const form =  document.getElementById("form"); 
 const first =  document.getElementById("first");
