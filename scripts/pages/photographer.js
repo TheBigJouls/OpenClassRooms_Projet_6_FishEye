@@ -28,15 +28,42 @@ async function getPhotographers() {
     const header = photographerFactory.getUserHeaderCardDOM()
     photoSection.appendChild(header)
 
+    const totalCard = photographerFactory.totalLikesCounterCard()
+    const mainSection = document.querySelector("main");
+    mainSection.appendChild(totalCard);
+    //totalCard.classList.add("media-likes");
+
     const mediasSection = document.querySelector(".media-section");
-    let totalLikesCount = 0;
-    this.totalLikesCount = totalLikesCount;
+    
+    
+
+  //likeCounter.classList.add("like-count");
     
     currentMedias.forEach((media) => {
+        //const totalLikesCount = Array.from(document.getElementsByClassName("media-likes"));
+    //console.log(totalLikesCount.map(p=>parseInt(p.textContent)))
         
-        this.totalLikesCount += media.likes;
-        console.log(this.totalLikesCount)
-        
+    const totalLikesCount = Array.from(document.getElementsByClassName("media-likes"));
+    let likeSum = 0;
+    
+    totalLikesCount.forEach(like => {
+    const likeCount = parseInt(like.textContent);
+    likeSum += likeCount;
+   //  console.log(likeSum);
+   //console.log(likeCount);
+   const totalCountSpan = totalCard.querySelector('.total-count');
+   totalCountSpan.textContent = `${likeSum}`;
+    //console.log(totalLikesCount);
+    console.log(likeSum);
+  
+
+});
+
+
+
+
+
+
         
         // eslint-disable-next-line no-undef
         const photographerMedia = new MediaFactory(media, currentPhotographer);
@@ -59,4 +86,4 @@ async function init() {
     displayData(currentMedias, currentPhotographer);
 }
 
-init();
+init()

@@ -27,6 +27,7 @@ class MediaFactory {
       const likeHeart = document.createElement("i");
       const likeCounter = document.createElement("p");
     
+      const totalCountpdate = document.querySelector('.total-count');
       
       eachCard.classList.add("eachcard");
       infoCard.classList.add("infocard");
@@ -38,13 +39,14 @@ class MediaFactory {
             likeHeart.classList.add("fa-solid");
             this.likes++;
             likeCounter.textContent = `${this.likes}`;
+            totalCountpdate.textContent = (parseInt(totalCountpdate.textContent) + 1);
 
           } else {
             likeHeart.classList.remove("fa-solid");
             likeHeart.classList.add("fa-regular");
             this.likes--;
             likeCounter.textContent = `${this.likes}`;
-           
+            totalCountpdate.textContent = (parseInt(totalCountpdate.textContent) - 1);
           }
           
           console.log(this.likes);
@@ -53,6 +55,7 @@ class MediaFactory {
      //Texte inséré en éléments HTML
       p.textContent = `${this.title}`;
       likeCounter.textContent = `${this.likes}`;
+      likeCounter.classList.add("media-likes");
       media.src = this.mediaPath;
       eachCard.appendChild(media);
       eachCard.appendChild(infoCard);
@@ -71,4 +74,3 @@ class MediaFactory {
  
  }
  
-

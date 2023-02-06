@@ -47,6 +47,12 @@ class PhotographerFactory {
 
         return (articleInfos);
     }
+
+    totalLikesCounterCard() {
+        const likesCounterCard = document.createElement("div");
+        likesCounterCard.id = "total-card";
+        likesCounterCard.innerHTML = `<span class="total-count"></span><i class="fa-solid fa-heart"></i><span class="total-price">${this.price}€ / jour</span>`; 
+        
+        return likesCounterCard;
+    }
 }
-// logique des likes 
-// lightbox

@@ -180,94 +180,26 @@ form input {
         margin-right:5px;
       }
 
-      .total-like {
-        position:absolute;
+      #total-card {
+        position:fixed;
         bottom:0;
-        right:0;
-        width:50px;
+        right:2%;
+        padding:10px 25px;
+
+        display:flex;
+        flex-direction:row;
+        justify-content: space-between;
+        align-items: baseline;
+        color:#000000;
+        background-color:#DB8876;
+        font-size:22px;
+        border-radius : 5px 5px 0 0;
       }
 
-      /*
-      #medias_section {
-  display: grid;
-  grid-template-columns: repeat(3, 400px);
-  grid-gap: 20px;
-  padding-top: 80px;
-  max-width: 1200px;
-  margin-left: 80px;
-}
-#medias_section figure {
-  position: relative;
-  width: 360px;
-  margin: 20px;
-}
-#medias_section figure video + figcaption:after {
-  pointer-events: none;
-  content: " ";
-  padding: 70px 70px;
-  width: 30px;
-  height: 30px;
-  background: url(../assets/icons/play.svg) center center/100% 100% no-repeat;
-  opacity: 0.7;
-  position: absolute;
-  top: 65px;
-  right: 90px;
-}
-#medias_section figure img, #medias_section figure video {
-  height: 300px;
-  width: 100%;
-  border-radius: 5px;
-  object-fit: cover;
-  cursor: pointer;
-  transition: 0.2s;
-}
-#medias_section figure img:focus-visible, #medias_section figure video:focus-visible {
-  transform: scale(1.03);
-  opacity: 0.85;
-  outline: 3px solid #901C1C;
-  transition: 0.2s;
-}
-#medias_section figcaption {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  font-size: 20px;
-  color: #901C1C;
-  width: 100%;
-}
-#medias_section figcaption p {
-  margin-top: 8px;
-}
-#medias_section figcaption .likes {
-  white-space: nowrap;
-}
-#medias_section figcaption button {
-  margin-left: 8px;
-  cursor: pointer;
-  background: none;
-  border: none;
-  color: inherit;
-  font-size: inherit;
-  transition: 0.2s;
-}
-#medias_section figcaption button:focus-visible {
-  outline: none;
-  color: #D3573C;
-  transform: scale(1.5);
-  transition: 0.2s;
-}
-#medias_section .likes-price {
-  background: #D3573C;
-  padding: 20px 40px;
-  position: fixed;
-  bottom: 0px;
-  right: 120px;
-  border-radius: 5px 5px 0 0;
-  font-weight: 700;
-  font-size: 20px;
-}
-#medias_section .likes-price i {
-  margin-left: 10px;
-  margin-right: 40px;
-}
-*/
+      #total-card i {
+        margin-right:20px;
+        color:#000000;
+        margin-left:5px;
+      }
+
+  
