@@ -27,87 +27,64 @@
 			<div class="modal">
 				<header>
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <img src="assets/icons/close.svg" class="close_btn" />
         </header>
         <form
-        name="reserve"
-        action="index.html"
-        method="get"
-        id="form"
-        novalidate
-      >
-      <!-- Implémenter entrées du formulaire #2 : ajout de l'attribut 'for' dans la balise label
-      correspondant à l'attribut 'id' dans la balise inupt -->
-        <div
-          class="formData">
-          <label for="first">Prénom</label><br>
-          <input
-            class="text-control"
-            type="text"
-            id="first"
-            name="first"
-            minlength="2"
-            required
-          >  <span id="error_first"></span><br>
-        </div>
-        <div
-          class="formData">
-          <label for="last">Nom</label><br>
-          <input
-            class="text-control"
-            type="text"
-            id="last"
-            name="last"
-            minlength="2"
-            required
-          ><span id="error_last"></span><br>
-        </div>
-        <div class="formData">
-          <label for="email">E-mail</label><br>
-          <input
-            class="text-control"
-            type="email"
-            id="email"
-            name="email"
-            required 
-          ><span id="error_email"></span><br>
-        </div>
-        <div
-          class="formData">
-          <label for="message">Votre message</label><br>
-          <input
-            class="text-control"
-            type="text"
-            id="message"
-            name="message"
-            required
-          ><span id="error_message"></span><br>
-        </div>
-        <input
-                class="btn-submit button"
-                type="submit"
-                id="validation"
-                value="Envoyer"
-              >
-      </form>
-    </div>
-    
-      <div class="endclose-modal">
-        <div class="modal-body">
-          <div class="content">
-             <p class="confirm-modal-message">Merci ! Votre réservation a été reçue.</p>
-            <input
-            class="close-modal-btn"
-            type="submit"
-            id="endclose-btn"
-            value="Fermer"
+          name="contact"
+          id="form"
+          novalidate
           >
+          <div
+            class="formData">
+            <label for="first">Prénom</label><br>
+            <input
+              
+              type="text"
+              id="first"
+              name="first"
+              minlength="2"
+              required
+            >  <span id="error_first"></span><br>
           </div>
-        </div>
+          <div
+            class="formData">
+            <label for="last">Nom</label><br>
+            <input
+             
+              type="text"
+              id="last"
+              name="last"
+              minlength="2"
+              required
+            ><span id="error_last"></span><br>
+          </div>
+          <div class="formData">
+            <label for="email">E-mail</label><br>
+            <input
+             
+              type="email"
+              id="email"
+              name="email"
+              required 
+            ><span id="error_email"></span><br>
+          </div>
+          <div
+            class="formData">
+            <label for="message">Votre message</label><br>
+            <input
+             
+              type="text"
+              id="message"
+              name="message"
+              required
+            ><span id="error_message"></span><br>
+          </div>
+          <button class="modal_btn valid_btn" >Envoyer</button>
+        </form>
+       
+      </div>
     </div>
-			</div>
-		</div>
-    
+	
     <script src="scripts/factories/media_factory.js"></script>
     <script src="scripts/factories/photographer_factory.js"></script>
     <script src="scripts/pages/photographer.js"></script>

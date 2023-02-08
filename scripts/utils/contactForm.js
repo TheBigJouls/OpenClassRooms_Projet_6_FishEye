@@ -1,5 +1,7 @@
 const contactModal = document.getElementById("contact_modal");
-const contactBtn = document.querySelector(".contact_button");
+const modalBtn = document.querySelector("open_btn");
+const validBtn = document.querySelector("valid_btn");
+const closeBtn = document.querySelector("close_btn");
 //const formData = document.querySelectorAll(".formData");
 
 const form =  document.getElementById("form"); 
@@ -9,10 +11,11 @@ const last =  document.getElementById("last")
 const lastError =  document.getElementById("error_last");
 const email =  document.getElementById("email");
 const emailError =  document.getElementById("error_email");
-const message =  document.getElementById("birthdate");
+const message =  document.getElementById("message");
 const messageError =  document.getElementById("error_message");
 
-const endClose =  document.querySelector(".endclose-modal");
+modalBtn.addEventListener("click", displayModal);
+closeBtn.addEventListener("click", closeModal);
 
 form.addEventListener("submit", onSubmit);
  
@@ -74,21 +77,17 @@ let isValid = true;
   else{
     messageError.textContent ="";
     // Si nombre de caractères suffisant, pas de message d'erreur
-
+  }
+  
   event.preventDefault();
   //Ajouter confirmation quand envoi réussi #4
-  if (isValid) 
-    { 
-      form.style.display="none";
-      endClose.style.display = "block";
-      form.reset();
-      endClose.addEventListener("click", closeModal);
-    }
-}
+ if (isValid) {
+  validBtn.addEventListener("click", closeModal);
+ }
+
+
 
 }
-
-contactBtn.forEach((btn) => btn.addEventListener("click", displayModal));
 
 
 function displayModal() {
@@ -97,5 +96,7 @@ function displayModal() {
 }
 
 function closeModal() {
-    contactModal.style.display = "none";
+  
+	contactModal.style.display = "none";
 }
+
