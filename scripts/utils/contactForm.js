@@ -4,7 +4,7 @@ const validBtn = document.querySelector("valid_btn");
 const closeBtn = document.querySelector("close_btn");
 //const formData = document.querySelectorAll(".formData");
 
-const form =  document.getElementById("form"); 
+//const form =  document.getElementById("form"); 
 const first =  document.getElementById("first");
 const firstError =  document.getElementById("error_first");
 const last =  document.getElementById("last")
@@ -17,7 +17,7 @@ const messageError =  document.getElementById("error_message");
 modalBtn.addEventListener("click", displayModal);
 closeBtn.addEventListener("click", closeModal);
 
-form.addEventListener("submit", onSubmit);
+validBtn.addEventListener("submit", onSubmit);
  
 
 //  Ajouter validation ou messages d'erreur #3 
@@ -100,3 +100,5 @@ function closeModal() {
 	contactModal.style.display = "none";
 }
 
+console.log(closeModal);
+console.log(validBtn);
