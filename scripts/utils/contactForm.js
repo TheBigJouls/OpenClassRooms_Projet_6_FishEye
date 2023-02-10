@@ -1,7 +1,7 @@
 const contactModal = document.getElementById("contact_modal");
-const modalBtn = document.querySelector("open_btn");
-const validBtn = document.querySelector("valid_btn");
-const closeBtn = document.querySelector("close_btn");
+const modalBtn = document.querySelector(".open_btn");
+const validBtn = document.querySelector(".valid_btn");
+const closeBtn = document.querySelector(".close_btn");
 //const formData = document.querySelectorAll(".formData");
 
 //const form =  document.getElementById("form"); 
@@ -17,12 +17,12 @@ const messageError =  document.getElementById("error_message");
 modalBtn.addEventListener("click", displayModal);
 closeBtn.addEventListener("click", closeModal);
 
-validBtn.addEventListener("submit", onSubmit);
- 
+validBtn.addEventListener("click", onSubmit);
+
 
 //  Ajouter validation ou messages d'erreur #3 
 function onSubmit(event) {
-
+  //debugger;
 let validEmail = /^([a-zA-Z0-9_\-.]+)@([a-zA-Z0-9_\-.]+)\.([a-zA-Z]{2,5})$/;
 let isValid = true;
  
@@ -93,12 +93,10 @@ let isValid = true;
 function displayModal() {
   
 	contactModal.style.display = "block";
+  console.log("ca marche");
 }
 
 function closeModal() {
   
 	contactModal.style.display = "none";
 }
-
-console.log(closeModal);
-console.log(validBtn);

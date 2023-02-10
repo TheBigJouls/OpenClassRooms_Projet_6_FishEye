@@ -38,7 +38,6 @@ class PhotographerFactory {
             <p> ${this.tagline} </p>
         </div>
         <div class="photographer_contact_button">
-        <button class="modal_btn open_btn" onclick="displayModal()">Contactez-moi</button>
         </div>
         <div class="photographer_img">
         <img class="profil" src="assets/photographers/${this.portrait}" alt="Photo de profil de ${this.name}">
