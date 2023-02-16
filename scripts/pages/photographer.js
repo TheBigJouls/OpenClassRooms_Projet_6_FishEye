@@ -19,70 +19,89 @@ async function getPhotographers() {
         });
         
   }
-//forEach
-  async function displayData(currentMedias, currentPhotographer) {
+//Affiche les données du photographe correspondant à l'ID
+async function displayData(currentMedias, currentPhotographer) {
 
+    //Crée une instance de la classe PhotographerFactory
     const photoSection = document.querySelector(".photograph-header");
     // eslint-disable-next-line no-undef
     const photographerFactory = new PhotographerFactory(currentPhotographer);
-    const header = photographerFactory.getUserHeaderCardDOM()
-    photoSection.appendChild(header)
+    // pour le header
+    const header = photographerFactory.getUserHeaderCardDOM();
+    photoSection.appendChild(header);
 
-    const totalCard = photographerFactory.totalLikesCounterCard()
+    // pour le bloc des likes totaux
+    const totalCard = photographerFactory.totalLikesCounterCard();
     const mainSection = document.querySelector("main");
     mainSection.appendChild(totalCard);
-    //totalCard.classList.add("media-likes");
 
     const mediasSection = document.querySelector(".media-section");
-    
-    
+    let sortedMedias = currentMedias.slice(); // create a copy of currentMedias for sorting
 
-  //likeCounter.classList.add("like-count");
-    
-    currentMedias.forEach((media) => {
-        //const totalLikesCount = Array.from(document.getElementsByClassName("media-likes"));
-    //console.log(totalLikesCount.map(p=>parseInt(p.textContent)))
-        
-    const totalLikesCount = Array.from(document.getElementsByClassName("media-likes"));
+    // Update total likes count for all media
     let likeSum = 0;
-    
-    totalLikesCount.forEach(like => {
-    const likeCount = parseInt(like.textContent);
-    likeSum += likeCount;
-   //  console.log(likeSum);
-   //console.log(likeCount);
-   const totalCountSpan = totalCard.querySelector('.total-count');
-   totalCountSpan.textContent = `${likeSum}`;
-    //console.log(totalLikesCount);
-    console.log(likeSum);
-  
+    sortedMedias.forEach(media => {
+        const likeCount = parseInt(media.likes);
+        likeSum += likeCount;
+    });
+    const totalCountSpan = totalCard.querySelector('.total-count');
+    totalCountSpan.textContent = `${likeSum}`;
 
-});
+    // Add event listener to sort button
+    const sortButton = document.querySelector(".sort-button");
+    sortButton.addEventListener("click", () => {
+        const sortOption = document.querySelector(".sort-dropdown").value;
+        if (sortOption === "date") {
+            sortedMedias.sort((a, b) => {
+                const dateA = new Date(a.date);
+                const dateB = new Date(b.date);
+                return dateB - dateA;
+            });
+        } else if (sortOption === "title") {
+            sortedMedias.sort((a, b) => a.title.localeCompare(b.title));
+        } else if (sortOption === "popularity") {
+            sortedMedias.sort((a, b) => b.likes - a.likes);
+        }
 
+        // Update the media section with sorted media
+        mediasSection.innerHTML = "";
+        sortedMedias.forEach(media => {
+            // eslint-disable-next-line no-undef
+            const photographerMedia = new MediaFactory(media, currentPhotographer);
+            const mediaCardDOM = photographerMedia.getMediaCardDOM();
+            mediasSection.appendChild(mediaCardDOM);
+        });
 
+        // Update total likes count for all media
+        let likeSum = 0;
+        sortedMedias.forEach(media => {
+            const likeCount = parseInt(media.likes);
+            likeSum += likeCount;
+        });
+        totalCountSpan.textContent = `${likeSum}`;
+    });
 
-
-
-
-        
+    // Initial display of media sorted by date
+    sortedMedias.sort((a, b) => {
+        const dateA = new Date(a.date);
+        const dateB = new Date(b.date);
+        return dateB - dateA;
+    });
+    sortedMedias.forEach(media => {
         // eslint-disable-next-line no-undef
         const photographerMedia = new MediaFactory(media, currentPhotographer);
         const mediaCardDOM = photographerMedia.getMediaCardDOM();
         mediasSection.appendChild(mediaCardDOM);
-     
-        
     });
-
-
 }
+
 
    
 async function init() {
     const { photographers, media } = await getPhotographers();
     const currentPhotographer = photographers.find(id => id.id == photographerId);
     const currentMedias = media.filter(media => media.photographerId == photographerId);
-    console.log(currentMedias);
-    console.log(currentPhotographer);
+    
     displayData(currentMedias, currentPhotographer);
 }
 

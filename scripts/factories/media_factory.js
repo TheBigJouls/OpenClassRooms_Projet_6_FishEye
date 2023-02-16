@@ -49,8 +49,6 @@ class MediaFactory {
             totalCountUpdate.textContent = (parseInt(totalCountUpdate.textContent) - 1);
           }
           
-          console.log(this.likes);
-          console.log(totalCountUpdate.textContent);
         });
 
      //Texte inséré en éléments HTML
