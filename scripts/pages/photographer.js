@@ -1,3 +1,4 @@
+
 //Mettre le code JavaScript lié à la page photographer.html
 
 //Récupère l'ID du photographe recherché dans l'URL
@@ -48,9 +49,10 @@ async function displayData(currentMedias, currentPhotographer) {
     totalCountSpan.textContent = `${likeSum}`;
 
     // Add event listener to sort button
-    const sortButton = document.querySelector(".sort-button");
-    sortButton.addEventListener("click", () => {
-        const sortOption = document.querySelector(".sort-dropdown").value;
+    const sortDropdown = document.querySelector(".sort-dropdown");
+    sortDropdown.addEventListener("change", () => {
+    const sortOption = sortDropdown.value;
+
         if (sortOption === "date") {
             sortedMedias.sort((a, b) => {
                 const dateA = new Date(a.date);
@@ -92,6 +94,7 @@ async function displayData(currentMedias, currentPhotographer) {
         const photographerMedia = new MediaFactory(media, currentPhotographer);
         const mediaCardDOM = photographerMedia.getMediaCardDOM();
         mediasSection.appendChild(mediaCardDOM);
+       
     });
 }
 
@@ -103,6 +106,10 @@ async function init() {
     const currentMedias = media.filter(media => media.photographerId == photographerId);
     
     displayData(currentMedias, currentPhotographer);
+
+    const lightbox = new LightBox(currentMedias);
+    lightbox.init();
 }
 
 init()
+

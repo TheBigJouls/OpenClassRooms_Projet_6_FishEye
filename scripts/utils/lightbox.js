@@ -1,55 +1,95 @@
-// eslint-disable-next-line no-unused-vars
-class lightBox {
-  constructor(media) {
-    this.media = media;
+
+class LightBox {
+  constructor(mediaList) {
+    this.mediaList = mediaList;
+    this.currentIndex = 0;
+    this.modal = null;
   }
- 
-  //show() {
-    // const lightBox = document.querySelector(".light-box");
-    // const mediaContainer = document.querySelector(".media-container");
-    // const mediaFactory = new MediaFactory(this.media);
-    // const mediaCard = mediaFactory.getLightBoxDOM();
-    // mediaContainer.appendChild(mediaCard);
-    // lightBox.style.display = "flex";
-   //}
- 
-  close() {
-    const lightBox = document.querySelector(".light-box");
-    lightBox.style.display = "none";
+
+  generateModal() {
+    const modalHTML = `
+      <div class="lightbox-modal">
+        <div class="lightbox-content">
+          <button class="close-btn">&times;</button>
+          <div class="media-container">
+            <img class="media" src="${this.mediaList[this.currentIndex].url}">
+          </div>
+          <div class="media-info">
+            <h2 class="media-title">${this.mediaList[this.currentIndex].title}</h2>
+            <div class="media-index">${this.currentIndex + 1}/${this.mediaList.length}</div>
+          </div>
+          <div class="media-navigation">
+            <button class="prev-btn">&lt;</button>
+            <button class="next-btn">&gt;</button>
+          </div>
+        </div>
+      </div>
+    `;
+    const body = document.querySelector('body');
+    body.insertAdjacentHTML('beforeend', modalHTML);
+    this.modal = document.querySelector('.lightbox-modal');
   }
- 
- prev() {
-  
- }
- 
- next() {
- 
- }
- 
- getLightBoxDOM() {
-   const lightBox = document.createElement("div");
-   lightBox.classList.add("light-box");
-   lightBox.innerHTML = `
-     <div class="media-container">
-     </div>
-     <div class="close-btn">
-       <i class="fas fa-times"></i>
-     </div>
-     <div class="nav-btns">
-       <div class="prev-btn">
-         <i class="fas fa-arrow-left"></i>
-       </div>
-       <div class="next-btn">
-         <i class="fas fa-arrow-right"></i>
-       </div>
-     </div>`;
-   const closeBtn = lightBox.querySelector(".close-btn");
-   closeBtn.addEventListener("click", this.close.bind(this));
-   const prevBtn = lightBox.querySelector(".prev-btn");
-   prevBtn.addEventListener("click", this.prev.bind(this));
-   const nextBtn = lightBox.querySelector(".next-btn")
-   nextBtn.addEventListener("click", this.next.bind(this));
-   return lightBox();
- }
- 
- }
+
+  toggleModal() {
+    this.modal.classList.toggle('visible');
+  }
+
+  show() {
+    this.generateModal();
+    this.toggleModal();
+  }
+
+  hide() {
+    this.toggleModal();
+    this.modal.remove();
+  }
+
+  showMedia(index) {
+    this.currentIndex = index;
+    const media = this.modal.querySelector('.media');
+    media.setAttribute('src', this.mediaList[this.currentIndex].url);
+    const title = this.modal.querySelector('.media-title');
+    title.textContent = this.mediaList[this.currentIndex].title;
+    const indexDisplay = this.modal.querySelector('.media-index');
+    indexDisplay.textContent = `${this.currentIndex + 1}/${this.mediaList.length}`;
+  }
+
+  prevMedia() {
+    if (this.currentIndex > 0) {
+      this.currentIndex--;
+    } else {
+      this.currentIndex = this.mediaList.length - 1;
+    }
+    this.showMedia(this.currentIndex);
+  }
+
+  nextMedia() {
+    if (this.currentIndex < this.mediaList.length - 1) {
+      this.currentIndex++;
+    } else {
+      this.currentIndex = 0;
+    }
+    this.showMedia(this.currentIndex);
+  }
+
+  init() {
+    const mediaList = document.querySelectorAll('.eachcard img, .eachcard video');
+      mediaList.forEach((media) => {
+        media.addEventListener('click', () => {
+          console.log ("qrlfjerferfiher")
+        
+        });
+      });
+      mediaList.forEach((media) => {
+        media.addEventListener('keydown', function(event) {
+          if (event.keyCode === 32) {
+          console.log ("qrlfjerferfiher")
+          }
+        });
+      });
+  }
+}
+
+const mediaList = Array.from(document.querySelectorAll(".eachcard img, .eachcard video"));
+
+console.log(mediaList)
