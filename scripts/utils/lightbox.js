@@ -1,4 +1,5 @@
 
+// eslint-disable-next-line no-unused-vars
 class LightBox {
   constructor(mediaList) {
     this.mediaList = mediaList;
@@ -92,6 +93,6 @@ class LightBox {
   }
 }
 
-const mediaList = Array.from(document.querySelectorAll(".eachcard img, .eachcard video"));
+//const mediaList = Array.from(document.querySelectorAll(".eachcard img, .eachcard video"));
 
 
