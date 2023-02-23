@@ -74,15 +74,17 @@ class LightBox {
 
   init() {
     const mediaList = document.querySelectorAll('.eachcard img, .eachcard video');
-      mediaList.forEach((media) => {
+      mediaList.forEach((media, index) => {
         media.addEventListener('click', () => {
+          this.show();
+          this.showMedia(index);
           console.log ("qrlfjerferfiher")
         
         });
       });
       mediaList.forEach((media) => {
         media.addEventListener('keydown', function(event) {
-          if (event.keyCode === 32) {
+          if (event.keyCode === 0) {
           console.log ("qrlfjerferfiher")
           }
         });
@@ -92,4 +94,4 @@ class LightBox {
 
 const mediaList = Array.from(document.querySelectorAll(".eachcard img, .eachcard video"));
 
-console.log(mediaList)
+

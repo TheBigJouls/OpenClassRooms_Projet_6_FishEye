@@ -107,6 +107,7 @@ async function init() {
     
     displayData(currentMedias, currentPhotographer);
 
+    // eslint-disable-next-line no-undef
     const lightbox = new LightBox(currentMedias);
     lightbox.init();
 }
