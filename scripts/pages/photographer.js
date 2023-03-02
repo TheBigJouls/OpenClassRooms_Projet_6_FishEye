@@ -96,6 +96,9 @@ async function displayData(currentMedias, currentPhotographer) {
         mediasSection.appendChild(mediaCardDOM);
        
     });
+
+    
+    
 }
 
 
@@ -108,8 +111,9 @@ async function init() {
     displayData(currentMedias, currentPhotographer);
 
     // eslint-disable-next-line no-undef
-    const lightbox = new LightBox(currentMedias);
-    lightbox.init();
+    const currentlightbox = new LightBox(currentMedias);
+    currentlightbox.init();
+    console.log(currentMedias)
 }
 
 init()
