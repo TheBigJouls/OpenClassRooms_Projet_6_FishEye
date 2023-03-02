@@ -96,6 +96,9 @@ async function displayData(currentMedias, currentPhotographer) {
         mediasSection.appendChild(mediaCardDOM);
        
     });
+
+    
+    
 }
 
 

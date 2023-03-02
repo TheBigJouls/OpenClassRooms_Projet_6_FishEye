@@ -1,34 +1,13 @@
 // eslint-disable-next-line no-unused-vars
 class LightBox {
-  constructor(mediaData, photographerData) {
+  constructor(mediaList, ) {
+    this.mediaList = mediaList;
     this.galleryIndex = 0;
     this.modal = null;
     this.isOpen = false;
-    
-    this.photographerData = photographerData;
-    this.name = photographerData.name;
-    const photographerName = this.name.split(" ");
-    const firstName = photographerName[0];
-
-    this.mediaData = mediaData;
-    this.image = mediaData.image;
-    this.title = mediaData.title;
-    this.video = mediaData.video;
-    this.mediaPath = `assets/photographers/${firstName}/${this.image ? this.image : this.video}`;
-    
-}
+  }
 
   generateModal() {
-    const isImage = this.mediaPath.endsWith(".jpg");
-    const isVideo = this.mediaPath.endsWith(".mp4");
-console.log (isImage)
-console.log (isVideo)
-    const mediaHTML = isImage
-      ? `<img class="media" src="${this.mediaPath}">`
-      : isVideo
-      ? `<video class="media" src="${this.mediaPath}" autoplay controls></video>`
-      : "";
-
     const modalHTML = `
       <div class="lightbox-modal">
         <div class="lightbox-content">
@@ -94,20 +73,12 @@ console.log (isVideo)
 
   showMedia(index) {
     this.galleryIndex = index;
-    const mediaContainer = this.modal.querySelector(".media-container");
-    const isImage = this.mediaPath.endsWith(".jpg");
-    const isVideo = this.mediaPath.endsWith(".mp4");
-    if (isImage) {
-      mediaContainer.innerHTML = `<img class="media" src="${this.mediaData[this.galleryIndex].url}">`;
-      console.log("image")
-    } else if (isVideo) {
-      mediaContainer.innerHTML = `<video class="media" src="${this.mediaData[this.galleryIndex].url}" autoplay controls></video>`;
-      console.log("video")
-    }
-    const title = this.modal.querySelector(".media-title");
-    title.textContent = this.mediaData[this.galleryIndex].title;
-    const indexDisplay = this.modal.querySelector(".media-index");
-    indexDisplay.textContent = `${this.galleryIndex + 1}/${this.mediaData.length}`;
+    const media = this.modal.querySelector('.media');
+    media.setAttribute('src', this.mediaList[this.galleryIndex].url);
+    const title = this.modal.querySelector('.media-title');
+    title.textContent = this.mediaList[this.galleryIndex].title;
+    const indexDisplay = this.modal.querySelector('.media-index');
+    indexDisplay.textContent = `${this.galleryIndex + 1}/${this.mediaList.length}`;
   }
 
   prevMedia() {
