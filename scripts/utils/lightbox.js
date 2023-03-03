@@ -137,6 +137,9 @@ console.log (this.mediaPath)
           this.showMedia(index);
           console.log ("qrlfjerferfiher")
         
+console.log (media)
+console.log (index)
+
         });
       });
       mediaList.forEach((media) => {
