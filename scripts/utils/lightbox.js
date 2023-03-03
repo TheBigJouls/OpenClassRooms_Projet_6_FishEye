@@ -23,6 +23,7 @@ class LightBox {
     const isVideo = this.mediaPath.endsWith(".mp4");
 console.log (isImage)
 console.log (isVideo)
+console.log (this.mediaPath)
     const mediaHTML = isImage
       ? `<img class="media" src="${this.mediaPath}">`
       : isVideo
@@ -37,7 +38,7 @@ console.log (isVideo)
             ${mediaHTML}
           </div>
           <div class="media-info">
-            <h2 class="media-title">${this.mediaData[this.galleryIndex].title}</h2>
+            <h2 class="media-title">${this.title}</h2>
             <div class="media-index">${this.galleryIndex + 1}/${this.mediaData.length}</div>
           </div>
           <div class="media-navigation">
@@ -148,6 +149,3 @@ console.log (isVideo)
   }
 }
 console.log (this.mediaData)
-
-//const mediaList = Array.from(document.querySelectorAll(".eachcard img, .eachcard video"));
-//const gallery = medias.map(media => media.getAttribute("src"));
