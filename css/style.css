@@ -18,6 +18,9 @@ header {
     height: 90px;
 }
 
+main{
+    margin-bottom:100px;
+}
 h1 {
     color: #901C1C;
 }

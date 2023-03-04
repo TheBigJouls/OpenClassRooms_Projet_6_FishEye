@@ -133,4 +133,7 @@ flex:1;
         margin-left:5px;
       }
 
-  
+  .media-container .media {
+    height:10%;
+    width:10%;
+  }

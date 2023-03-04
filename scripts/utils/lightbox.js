@@ -9,21 +9,20 @@ class LightBox {
     this.name = photographerData.name;
     const photographerName = this.name.split(" ");
     const firstName = photographerName[0];
-
     this.mediaData = mediaData;
-    this.image = mediaData.image;
-    this.title = mediaData.title;
-    this.video = mediaData.video;
+    this.image = this.mediaData[this.galleryIndex].image;
+    this.video = this.mediaData[this.galleryIndex].video;
+    this.title = this.mediaData[this.galleryIndex].title;
     this.mediaPath = `assets/photographers/${firstName}/${this.image ? this.image : this.video}`;
-    
+    console.log("mediaPath " + this.mediaPath)
 }
 
   generateModal() {
-    const isImage = this.mediaPath.endsWith(".jpg");
-    const isVideo = this.mediaPath.endsWith(".mp4");
-console.log (isImage)
-console.log (isVideo)
-console.log (this.mediaPath)
+    const isImage = this.mediaPath.endsWith(this.image);
+    const isVideo = this.mediaPath.endsWith(this.video);
+console.log ("image " + isImage)
+console.log ("video " + isVideo)
+console.log ("mediaPath " + this.mediaPath)
     const mediaHTML = isImage
       ? `<img class="media" src="${this.mediaPath}">`
       : isVideo
@@ -93,23 +92,24 @@ console.log (this.mediaPath)
     }
   }
 
-  showMedia(index) {
-    this.galleryIndex = index;
+  showMedia(mediaIndex, mediaSrc) {
+    this.galleryIndex = mediaIndex;
     const mediaContainer = this.modal.querySelector(".media-container");
-    const isImage = this.mediaPath.endsWith(".jpg");
-    const isVideo = this.mediaPath.endsWith(".mp4");
-    if (isImage) {
-      mediaContainer.innerHTML = `<img class="media" src="${this.mediaData[this.galleryIndex].url}">`;
-      console.log("image")
-    } else if (isVideo) {
-      mediaContainer.innerHTML = `<video class="media" src="${this.mediaData[this.galleryIndex].url}" autoplay controls></video>`;
-      console.log("video")
+    const media = this.mediaData[this.galleryIndex];
+    this.mediaPath = mediaSrc;
+    if (media.image) {
+      mediaContainer.innerHTML = `<img class="media" src="${this.mediaPath}">`;
+    } else if (media.video) {
+      mediaContainer.innerHTML = `<video class="media" src="${this.mediaPath}" autoplay controls></video>`;
     }
     const title = this.modal.querySelector(".media-title");
-    title.textContent = this.mediaData[this.galleryIndex].title;
+    title.textContent = media.title;
     const indexDisplay = this.modal.querySelector(".media-index");
     indexDisplay.textContent = `${this.galleryIndex + 1}/${this.mediaData.length}`;
   }
+  
+  
+  
 
   prevMedia() {
     if (this.galleryIndex > 0) {
@@ -131,24 +131,23 @@ console.log (this.mediaPath)
 
   init() {
     const mediaList = document.querySelectorAll('.eachcard img, .eachcard video');
-      mediaList.forEach((media, index) => {
-        media.addEventListener('click', () => {
-          this.show();
-          this.showMedia(index);
-          console.log ("qrlfjerferfiher")
-        
-console.log (media)
-console.log (index)
-
-        });
+    mediaList.forEach((media) => {
+      media.addEventListener('click', () => {
+        this.show();
+        const mediaSrc = media.getAttribute('src');
+        const mediaIndex = [...mediaList].indexOf(media);
+        this.showMedia(mediaIndex, mediaSrc);
       });
-      mediaList.forEach((media) => {
-        media.addEventListener('keydown', function(event) {
-          if (event.keyCode === 0) {
-          console.log ("qrlfjerferfiher")
-          }
-        });
+    });
+    mediaList.forEach((media) => {
+      media.addEventListener('keydown', function(event) {
+        if (event.keyCode === 0) {
+          console.log("qrlfjerferfiher")
+        }
       });
+    });
   }
+  
+  
 }
 console.log (this.mediaData)
