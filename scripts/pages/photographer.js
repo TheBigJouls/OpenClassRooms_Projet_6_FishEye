@@ -21,7 +21,8 @@ async function getPhotographers() {
         
   }
 //Affiche les données du photographe correspondant à l'ID
-async function displayData(currentMedias, currentPhotographer) {
+async function displayData(currentMedias, currentPhotographer, lightbox) {
+console.log(lightbox)
 
     //Crée une instance de la classe PhotographerFactory
     const photoSection = document.querySelector(".photograph-header");
@@ -69,7 +70,7 @@ async function displayData(currentMedias, currentPhotographer) {
         mediasSection.innerHTML = "";
         sortedMedias.forEach(media => {
             // eslint-disable-next-line no-undef
-            const photographerMedia = new MediaFactory(media, currentPhotographer);
+            const photographerMedia = new MediaFactory(media, currentPhotographer, lightbox);
             const mediaCardDOM = photographerMedia.getMediaCardDOM();
             mediasSection.appendChild(mediaCardDOM);
         });
@@ -91,7 +92,7 @@ async function displayData(currentMedias, currentPhotographer) {
     });
     sortedMedias.forEach(media => {
         // eslint-disable-next-line no-undef
-        const photographerMedia = new MediaFactory(media, currentPhotographer);
+        const photographerMedia = new MediaFactory(media, currentPhotographer, lightbox);
         const mediaCardDOM = photographerMedia.getMediaCardDOM();
         mediasSection.appendChild(mediaCardDOM);
        
@@ -107,12 +108,13 @@ async function init() {
     const { photographers, media } = await getPhotographers();
     const currentPhotographer = photographers.find(id => id.id == photographerId);
     const currentMedias = media.filter(media => media.photographerId == photographerId);
-    
-    displayData(currentMedias, currentPhotographer);
+     // eslint-disable-next-line no-undef
+     const lightbox = new LightBox(currentMedias, currentPhotographer);
+     lightbox.init();
 
-    // eslint-disable-next-line no-undef
-    const lightbox = new LightBox(currentMedias, currentPhotographer);
-    lightbox.init();
+    displayData(currentMedias, currentPhotographer, lightbox);
+
+   
 }
 
 init()

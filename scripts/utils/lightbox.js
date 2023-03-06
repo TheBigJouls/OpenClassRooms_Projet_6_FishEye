@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 class LightBox {
-  constructor(mediaData, photographerData) {
+  constructor(mediasData, photographerData) {
     this.galleryIndex = 0;
     this.modal = null;
     this.isOpen = false;
@@ -9,25 +9,26 @@ class LightBox {
     this.name = photographerData.name;
     const photographerName = this.name.split(" ");
     const firstName = photographerName[0];
-    this.mediaData = mediaData;
-    this.image = this.mediaData[this.galleryIndex].image;
-    this.video = this.mediaData[this.galleryIndex].video;
-    this.title = this.mediaData[this.galleryIndex].title;
-    this.mediaPath = `assets/photographers/${firstName}/${this.image ? this.image : this.video}`;
+    this.mediasData = mediasData;
+   
+    this.mediaPath = `assets/photographers/${firstName}/`;
     console.log("mediaPath " + this.mediaPath)
+    console.log("mediasData " + mediasData) 
+
+    this.generateModal()
+    this.hide()
+  
 }
 
   generateModal() {
-    const isImage = this.mediaPath.endsWith(this.image);
-    const isVideo = this.mediaPath.endsWith(this.video);
+    
+    const isImage = this.mediasData[0]
+    console.log("mediasData 0 " + this.mediasData[0]) 
 console.log ("image " + isImage)
-console.log ("video " + isVideo)
 console.log ("mediaPath " + this.mediaPath)
     const mediaHTML = isImage
       ? `<img class="media" src="${this.mediaPath}">`
-      : isVideo
-      ? `<video class="media" src="${this.mediaPath}" autoplay controls></video>`
-      : "";
+      : `<video class="media" src="${this.mediaPath}" autoplay controls></video>`
 
     const modalHTML = `
       <div class="lightbox-modal">
@@ -38,7 +39,7 @@ console.log ("mediaPath " + this.mediaPath)
           </div>
           <div class="media-info">
             <h2 class="media-title">${this.title}</h2>
-            <div class="media-index">${this.galleryIndex + 1}/${this.mediaData.length}</div>
+            <div class="media-index">${this.galleryIndex + 1}/${this.mediasData.length}</div>
           </div>
           <div class="media-navigation">
             <button class="prev-btn">&lt;</button>
@@ -54,6 +55,7 @@ console.log ("mediaPath " + this.mediaPath)
     const closeBtn = this.modal.querySelector(".close-btn");
     closeBtn.addEventListener("click", () => {
       this.hide();
+      
     });
 
     const prevBtn = this.modal.querySelector(".prev-btn");
@@ -74,69 +76,71 @@ console.log ("mediaPath " + this.mediaPath)
       } else if (event.keyCode === 39) {
         this.nextMedia();
       }
+
     });
   }
 
   show() {
-    if (!this.isOpen) {
-      this.generateModal();
-      this.modal.classList.toggle("visible");
+    
+      this.modal.style.display = "block";
       this.isOpen = true;
-    }
+    
   }
 
   hide() {
-    if (this.isOpen) {
-      this.modal.remove();
+    
+      this.modal.style.display = "none";
       this.isOpen = false;
-    }
+      console.log("je ferme")
   }
 
-  showMedia(mediaIndex, mediaSrc) {
+  updateMedia(mediaIndex) {
     this.galleryIndex = mediaIndex;
     const mediaContainer = this.modal.querySelector(".media-container");
-    const media = this.mediaData[this.galleryIndex];
-    this.mediaPath = mediaSrc;
+    const media = this.mediasData[this.galleryIndex];
+    console.log(media)
     if (media.image) {
-      mediaContainer.innerHTML = `<img class="media" src="${this.mediaPath}">`;
+      mediaContainer.innerHTML = `<img class="media" src="${this.mediaPath}${media.image}">`;
     } else if (media.video) {
-      mediaContainer.innerHTML = `<video class="media" src="${this.mediaPath}" autoplay controls></video>`;
+      mediaContainer.innerHTML = `<video class="media" src="${this.mediaPath}${media.video}" autoplay controls></video>`;
     }
     const title = this.modal.querySelector(".media-title");
     title.textContent = media.title;
     const indexDisplay = this.modal.querySelector(".media-index");
-    indexDisplay.textContent = `${this.galleryIndex + 1}/${this.mediaData.length}`;
+    indexDisplay.textContent = `${this.galleryIndex + 1}/${this.mediasData.length}`;
+
   }
-  
-  
   
 
   prevMedia() {
     if (this.galleryIndex > 0) {
       this.galleryIndex--;
     } else {
-      this.galleryIndex = this.mediaData.length - 1;
+      this.galleryIndex = this.mediasData.length - 1;
     }
-    this.showMedia(this.galleryIndex);
+    this.updateMedia(this.galleryIndex);
   }
 
   nextMedia() {
-    if (this.galleryIndex < this.mediaData.length - 1) {
+    if (this.galleryIndex < this.mediasData.length - 1) {
       this.galleryIndex++;
     } else {
       this.galleryIndex = 0;
     }
-    this.showMedia(this.galleryIndex);
+    this.updateMedia(this.galleryIndex);
   }
 
   init() {
     const mediaList = document.querySelectorAll('.eachcard img, .eachcard video');
     mediaList.forEach((media) => {
       media.addEventListener('click', () => {
+       console.log(media.name)
+        const selectedMediaName = media.name
+        const mediaIndex = this.mediasData.findIndex(media =>
+          media.title === selectedMediaName
+          )
+        this.updateMedia(mediaIndex);
         this.show();
-        const mediaSrc = media.getAttribute('src');
-        const mediaIndex = [...mediaList].indexOf(media);
-        this.showMedia(mediaIndex, mediaSrc);
       });
     });
     mediaList.forEach((media) => {
@@ -150,4 +154,4 @@ console.log ("mediaPath " + this.mediaPath)
   
   
 }
-console.log (this.mediaData)
+console.log (this.mediasData)

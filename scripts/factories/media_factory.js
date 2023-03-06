@@ -1,6 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 class MediaFactory {
-  constructor(mediaData, photographerData) {
+  constructor(mediaData, photographerData, lightbox) {
+
       this.mediaData = mediaData;
       this.image = mediaData.image;
       this.title = mediaData.title;
@@ -8,6 +9,9 @@ class MediaFactory {
       this.likes = mediaData.likes;
       this.name = photographerData.name;
       this.price = photographerData.price;
+
+      this.lightbox = lightbox;
+      
       const photographerName = this.name.split(" ");
       const firstName = photographerName[0];
       this.mediaPath = `assets/photographers/${firstName}/${this.image ? this.image : this.video}`;
@@ -21,7 +25,18 @@ class MediaFactory {
       const infoCard = document.createElement("div");
       const p = document.createElement("p");
       const media = document.createElement(this.image ? "img" : "video");
-     
+
+    
+      media.addEventListener("click", () => {
+        const mediaIndex = this.lightbox.mediasData.findIndex(media =>
+        media.title === this.title
+         )
+        
+      this.lightbox.show()
+      this.lightbox.updateMedia(mediaIndex)
+
+      }
+      )
     
       const likeBtn = document.createElement("span");
       const likeHeart = document.createElement("i");
@@ -70,6 +85,6 @@ class MediaFactory {
   }
 
 
- 
+ //rajouter une instance de la lightbox 
  }
  
