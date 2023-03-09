@@ -1,6 +1,8 @@
 @import url("photographer.css");
 @import url("contact_modal.css"); 
 @import url("sort_button.css");
+@import url("lightbox.css");
+
 body {
     font-family: "DM Sans", sans-serif;
     margin: auto;
@@ -19,7 +21,7 @@ header {
 }
 
 main{
-    margin-bottom:100px;
+    margin-bottom:500px;
 }
 h1 {
     color: #901C1C;

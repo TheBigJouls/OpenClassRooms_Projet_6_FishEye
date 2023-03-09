@@ -24,13 +24,14 @@ async function getPhotographers() {
 async function displayData(currentMedias, currentPhotographer, lightbox) {
 console.log(lightbox)
 
-    //Crée une instance de la classe PhotographerFactory
-    const photoSection = document.querySelector(".photograph-header");
+   
     // eslint-disable-next-line no-undef
     const photographerFactory = new PhotographerFactory(currentPhotographer);
     // pour le header
-    const header = photographerFactory.getUserHeaderCardDOM();
-    photoSection.appendChild(header);
+    photographerFactory.getUserHeaderCardDOM();
+   // pur la modale
+    const modalName = document.querySelector(".modal header h2");
+    modalName.insertAdjacentHTML("beforeend", "<br/>" + currentPhotographer.name);
 
     // pour le bloc des likes totaux
     const totalCard = photographerFactory.totalLikesCounterCard();

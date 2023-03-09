@@ -2,7 +2,6 @@ const contactModal = document.getElementById("contact_modal");
 const modalBtn = document.querySelector(".open_btn");
 const validBtn = document.querySelector(".valid_btn");
 const closeBtn = document.querySelector(".close_btn");
-//const formData = document.querySelectorAll(".formData");
 
 //const form =  document.getElementById("form"); 
 const first =  document.getElementById("first");

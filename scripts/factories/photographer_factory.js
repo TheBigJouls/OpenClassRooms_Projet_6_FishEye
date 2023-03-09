@@ -10,24 +10,8 @@ class PhotographerFactory {
     this.portrait = portrait;
     }
     
-    getUserCardDOM() {
-        const article = document.createElement('article')
-
-        article.innerHTML =
-        `<a href="./photographer.html?id=${this.id}">
-            <img class="profil" src="assets/photographers/${this.portrait}" alt="Photo de profil de ${name}">
-            <h1> ${this.name} </h1>
-        </a>
-        <div>
-            <p> ${this.city}, ${this.country} </p>
-            <p> ${this.tagline} </p>
-            <p> ${this.price} € / jour</p>
-        </div>`
-        return (article);
-    }
-
     getUserHeaderCardDOM() {
-        const articleInfos = document.createElement('article');
+        const photographerHeader = document.querySelector('.photograph-header');
         const photographerInfo = document.createElement('div');
         const photographerLink = document.createElement('a');
         const photographerName = document.createElement('h1');
@@ -51,15 +35,15 @@ class PhotographerFactory {
         photographerInfo.appendChild(photographerCountry);
         photographerInfo.appendChild(photographerTagline);
         photographerImg.appendChild(photographerProfileImg);
-        articleInfos.appendChild(photographerInfo);
-        articleInfos.appendChild(photographerImg);
+        photographerHeader.appendChild(photographerInfo);
+        photographerHeader.appendChild(photographerImg);
       
         photographerInfo.classList.add('photographer_info');
         photographerImg.classList.add('photographer_img');
         photographerProfileImg.classList.add('profil');
-        articleInfos.insertBefore( photographerInfo, articleInfos.firstChild);
+        photographerHeader.insertBefore( photographerInfo, photographerHeader.firstChild);
       
-        return articleInfos;
+        return photographerHeader;
       }
       
 
