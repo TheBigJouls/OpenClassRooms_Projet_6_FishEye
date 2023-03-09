@@ -32,19 +32,23 @@ console.log ("mediaPath " + this.mediaPath)
 
     const modalHTML = `
       <div class="lightbox-modal">
+      <button class="close-btn"></button>
         <div class="lightbox-content">
-          <button class="close-btn">&times;</button>
+          
+          <button class="prev-btn"></button>
+
           <div class="media-container">
-            ${mediaHTML}
+            <div class="media-content">
+              ${mediaHTML}
+            </div>
+            <div class="media-info">
+              <h2 class="media-title">${this.title}</h2>
+            </div>
           </div>
-          <div class="media-info">
-            <h2 class="media-title">${this.title}</h2>
-            <div class="media-index">${this.galleryIndex + 1}/${this.mediasData.length}</div>
-          </div>
-          <div class="media-navigation">
-            <button class="prev-btn">&lt;</button>
-            <button class="next-btn">&gt;</button>
-          </div>
+          
+           
+            <button class="next-btn"></button>
+          
         </div>
       </div>
     `;
@@ -96,7 +100,7 @@ console.log ("mediaPath " + this.mediaPath)
 
   updateMedia(mediaIndex) {
     this.galleryIndex = mediaIndex;
-    const mediaContainer = this.modal.querySelector(".media-container");
+    const mediaContainer = this.modal.querySelector(".media-content");
     const media = this.mediasData[this.galleryIndex];
     console.log(media)
     if (media.image) {

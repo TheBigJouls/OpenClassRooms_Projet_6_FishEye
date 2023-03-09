@@ -11,7 +11,6 @@ class MediaFactory {
       this.price = photographerData.price;
 
       this.lightbox = lightbox;
-      
       const photographerName = this.name.split(" ");
       const firstName = photographerName[0];
       this.mediaPath = `assets/photographers/${firstName}/${this.image ? this.image : this.video}`;
