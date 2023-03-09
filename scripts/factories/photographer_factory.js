@@ -10,6 +10,22 @@ class PhotographerFactory {
     this.portrait = portrait;
     }
     
+    getUserCardDOM() {
+        const article = document.createElement('article')
+
+        article.innerHTML =
+        `<a href="./photographer.html?id=${this.id}">
+            <img class="profil" src="assets/photographers/${this.portrait}" alt="Photo de profil de ${name}">
+            <h1> ${this.name} </h1>
+        </a>
+        <div>
+            <p> ${this.city}, ${this.country} </p>
+            <p> ${this.tagline} </p>
+            <p> ${this.price} € / jour</p>
+        </div>`
+        return (article);
+    }
+
     getUserHeaderCardDOM() {
         const photographerHeader = document.querySelector('.photograph-header');
         const photographerInfo = document.createElement('div');

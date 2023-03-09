@@ -10,17 +10,11 @@
     padding: 40px;
     display:flex;
     align-items: center;
-}
-
-.photograph-header article {
-    flex-wrap: wrap;
-    display: flex;
     justify-content: space-between;
-    align-items: center;
-    height:100%;
 }
 
-.photograph-header article div {
+
+.photograph-header div {
 flex:1;
 }
 
