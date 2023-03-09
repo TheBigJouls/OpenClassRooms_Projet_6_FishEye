@@ -11,7 +11,9 @@
 
   <body>
     <header>
-      <img src="assets/images/logo.png" class="logo" />
+      <a href="index.html" alt="Fisheye Homepage">
+        <img src="assets/images/logo.png" class="logo" />
+      </a>
     </header>
 
     <main id="main">
@@ -24,7 +26,7 @@
       
     </main>
 
-    <div id="contact_modal">
+    <div id="contact_modal" role="dialog">
 			<div class="modal">
 				<header>
           <h2>Contactez-moi</h2>
@@ -37,7 +39,7 @@
           >
           <div
             class="formData">
-            <label for="first">Prénom</label><br>
+            <label for="First name">Prénom</label><br>
             <input
               
               type="text"
@@ -45,11 +47,13 @@
               name="first"
               minlength="2"
               required
+              aria-labelledby="First name"
+              aria-describedby="At least 3 characters"
             >  <span id="error_first"></span><br>
           </div>
           <div
             class="formData">
-            <label for="last">Nom</label><br>
+            <label for="Last name">Nom</label><br>
             <input
              
               type="text"
@@ -57,30 +61,35 @@
               name="last"
               minlength="2"
               required
+              aria-labelledby="Last name"
+              aria-describedby="At least 3 characters"
             ><span id="error_last"></span><br>
           </div>
           <div class="formData">
-            <label for="email">E-mail</label><br>
+            <label for="Email">E-mail</label><br>
             <input
              
               type="email"
               id="email"
               name="email"
               required 
+              aria-labelledby="Email"
             ><span id="error_email"></span><br>
           </div>
           <div
             class="formData">
-            <label for="message">Votre message</label><br>
+            <label for="Your message">Votre message</label><br>
             <input
              
               type="text"
               id="message"
               name="message"
               required
+              aria-labelledby="Your message"
+              aria-describedby="At least 3 characters"
             ><span id="error_message"></span><br>
           </div>
-          <button class="modal_btn valid_btn" >Envoyer</button>
+          <button class="modal_btn valid_btn" role="Send">Envoyer</button>
         </form>
        
       </div>
