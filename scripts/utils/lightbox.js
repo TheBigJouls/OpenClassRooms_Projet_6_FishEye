@@ -36,7 +36,6 @@ console.log ("mediaPath " + this.mediaPath)
         <div class="lightbox-content">
           
           <button class="prev-btn"></button>
-
           <div class="media-container">
             <div class="media-content">
               ${mediaHTML}
@@ -86,14 +85,18 @@ console.log ("mediaPath " + this.mediaPath)
 
   show() {
     
-      this.modal.style.display = "block";
+    this.modal.style.display = "block";
+    this.modal.setAttribute('aria-hidden', 'false');
+    
       this.isOpen = true;
     
   }
 
   hide() {
     
-      this.modal.style.display = "none";
+    this.modal.style.display = "none";
+    this.modal.setAttribute('aria-hidden', 'true');
+    
       this.isOpen = false;
       console.log("je ferme")
   }

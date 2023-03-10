@@ -38,6 +38,7 @@ class PhotographerFactory {
         const photographerProfileImg = document.createElement('img');
       
         photographerLink.href = `./photographer.html?id=${this.id}`;
+        photographerLink.setAttribute('aria-label', this.name);
         photographerName.textContent = this.name;
         photographerCity.textContent = this.city;
         photographerCountry.textContent = this.country;

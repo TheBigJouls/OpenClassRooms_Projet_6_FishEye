@@ -18,7 +18,7 @@
 
     <main id="main">
       <div class="photograph-header">
-        <button class="modal_btn open_btn">Contactez-moi</button>
+        <button class="modal_btn open_btn" aria-hidden="true">Contactez-moi</button>
         <!--<button class="contact_button" onclick="displayModal()">Contactez-moi</button>-->
       </div>
 
@@ -26,7 +26,7 @@
       
     </main>
 
-    <div id="contact_modal" role="dialog">
+    <div id="contact_modal" role="dialog" aria-hidden="true">
 			<div class="modal">
 				<header>
           <h2>Contactez-moi</h2>
@@ -89,7 +89,7 @@
               aria-describedby="At least 3 characters"
             ><span id="error_message"></span><br>
           </div>
-          <button class="modal_btn valid_btn" role="Send">Envoyer</button>
+          <button class="modal_btn valid_btn" role="Send" aria-hidden="true">Envoyer</button>
         </form>
        
       </div>

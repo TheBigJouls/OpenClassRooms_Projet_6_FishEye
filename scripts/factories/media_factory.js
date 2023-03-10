@@ -46,7 +46,8 @@ class MediaFactory {
       eachCard.classList.add("eachcard");
       infoCard.classList.add("infocard");
       likeHeart.classList.add("fa-regular", "fa-heart");
-
+      likeHeart.setAttribute("aria-label", "likes");
+      
       likeHeart.addEventListener("click", () => {
           if (likeHeart.classList.contains("fa-regular")) {
             likeHeart.classList.remove("fa-regular");
