@@ -107,9 +107,9 @@ console.log ("mediaPath " + this.mediaPath)
     const media = this.mediasData[this.galleryIndex];
     console.log(media)
     if (media.image) {
-      mediaContainer.innerHTML = `<img class="media" src="${this.mediaPath}${media.image}">`;
+      mediaContainer.innerHTML = `<img class="media" src="${this.mediaPath}${media.image}" aria-label="${media.title}, close-up view">`;
     } else if (media.video) {
-      mediaContainer.innerHTML = `<video class="media" src="${this.mediaPath}${media.video}" autoplay controls></video>`;
+      mediaContainer.innerHTML = `<video class="media" src="${this.mediaPath}${media.video}" autoplay controls aria-label="${media.title}, close-up view"></video>`;
     }
     const title = this.modal.querySelector(".media-title");
     title.textContent = media.title;

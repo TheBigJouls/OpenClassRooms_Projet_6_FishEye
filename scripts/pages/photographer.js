@@ -32,6 +32,7 @@ console.log(lightbox)
    // pur la modale
     const modalName = document.querySelector(".modal header h2");
     modalName.insertAdjacentHTML("beforeend", "<br/>" + currentPhotographer.name);
+    modalName.setAttribute("aria-labelledby", "Contact Me, " + currentPhotographer.name);
 
     // pour le bloc des likes totaux
     const totalCard = photographerFactory.totalLikesCounterCard();

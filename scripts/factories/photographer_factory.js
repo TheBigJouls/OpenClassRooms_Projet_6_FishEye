@@ -14,8 +14,8 @@ class PhotographerFactory {
         const article = document.createElement('article')
 
         article.innerHTML =
-        `<a href="./photographer.html?id=${this.id}">
-            <img class="profil" src="assets/photographers/${this.portrait}" alt="Photo de profil de ${name}">
+        `<a href="./photographer.html?id=${this.id}" aria-label="${this.name}">
+            <img class="profil" src="assets/photographers/${this.portrait}" alt="Photo de profil de ${this.name}">
             <h1> ${this.name} </h1>
         </a>
         <div>

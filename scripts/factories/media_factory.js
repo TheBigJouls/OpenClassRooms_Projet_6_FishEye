@@ -24,7 +24,7 @@ class MediaFactory {
       const infoCard = document.createElement("div");
       const p = document.createElement("p");
       const media = document.createElement(this.image ? "img" : "video");
-
+      media.setAttribute("aria-label", `${this.title}` + ", closeup view");
     
       media.addEventListener("click", () => {
         const mediaIndex = this.lightbox.mediasData.findIndex(media =>
