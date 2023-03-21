@@ -92,7 +92,6 @@ let isValid = true;
 function displayModal() {
   
 	contactModal.style.display = "block";
-  console.log("ca marche");
 }
 
 function closeModal() {

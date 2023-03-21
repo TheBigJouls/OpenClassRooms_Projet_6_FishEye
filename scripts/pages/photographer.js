@@ -22,14 +22,12 @@ async function getPhotographers() {
   }
 //Affiche les données du photographe correspondant à l'ID
 async function displayData(currentMedias, currentPhotographer, lightbox) {
-console.log(lightbox)
 
-   
     // eslint-disable-next-line no-undef
     const photographerFactory = new PhotographerFactory(currentPhotographer);
     // pour le header
     photographerFactory.getUserHeaderCardDOM();
-   // pur la modale
+   // pour la modale
     const modalName = document.querySelector(".modal header h2");
     modalName.insertAdjacentHTML("beforeend", "<br/>" + currentPhotographer.name);
     modalName.setAttribute("aria-labelledby", "Contact Me, " + currentPhotographer.name);

@@ -12,8 +12,6 @@ class LightBox {
     this.mediasData = mediasData;
    
     this.mediaPath = `assets/photographers/${firstName}/`;
-    console.log("mediaPath " + this.mediaPath)
-    console.log("mediasData " + mediasData) 
 
     this.generateModal()
     this.hide()
@@ -23,9 +21,6 @@ class LightBox {
   generateModal() {
     
     const isImage = this.mediasData[0]
-    console.log("mediasData 0 " + this.mediasData[0]) 
-console.log ("image " + isImage)
-console.log ("mediaPath " + this.mediaPath)
     const mediaHTML = isImage
       ? `<img class="media" src="${this.mediaPath}">`
       : `<video class="media" src="${this.mediaPath}" autoplay controls></video>`
@@ -98,14 +93,13 @@ console.log ("mediaPath " + this.mediaPath)
     this.modal.setAttribute('aria-hidden', 'true');
     
       this.isOpen = false;
-      console.log("je ferme")
   }
 
   updateMedia(mediaIndex) {
     this.galleryIndex = mediaIndex;
     const mediaContainer = this.modal.querySelector(".media-content");
     const media = this.mediasData[this.galleryIndex];
-    console.log(media)
+    
     if (media.image) {
       mediaContainer.innerHTML = `<img class="media" src="${this.mediaPath}${media.image}" aria-label="${media.title}, close-up view">`;
     } else if (media.video) {
@@ -141,7 +135,6 @@ console.log ("mediaPath " + this.mediaPath)
     const mediaList = document.querySelectorAll('.eachcard img, .eachcard video');
     mediaList.forEach((media) => {
       media.addEventListener('click', () => {
-       console.log(media.name)
         const selectedMediaName = media.name
         const mediaIndex = this.mediasData.findIndex(media =>
           media.title === selectedMediaName
@@ -150,15 +143,8 @@ console.log ("mediaPath " + this.mediaPath)
         this.show();
       });
     });
-    mediaList.forEach((media) => {
-      media.addEventListener('keydown', function(event) {
-        if (event.keyCode === 0) {
-          console.log("qrlfjerferfiher")
-        }
-      });
-    });
+    
   }
   
   
 }
-console.log (this.mediasData)

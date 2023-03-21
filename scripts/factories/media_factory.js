@@ -25,7 +25,8 @@ class MediaFactory {
       const p = document.createElement("p");
       const media = document.createElement(this.image ? "img" : "video");
       media.setAttribute("aria-label", `${this.title}` + ", closeup view");
-    
+      media.setAttribute("tabindex", "0");
+
       media.addEventListener("click", () => {
         const mediaIndex = this.lightbox.mediasData.findIndex(media =>
         media.title === this.title
@@ -36,6 +37,15 @@ class MediaFactory {
 
       }
       )
+
+      media.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            const mediaIndex = this.lightbox.mediasData.findIndex(media => media.title === this.title);
+            this.lightbox.show();
+            this.lightbox.updateMedia(mediaIndex);
+        }
+    });
+    
     
       const likeBtn = document.createElement("span");
       const likeHeart = document.createElement("i");
@@ -47,7 +57,8 @@ class MediaFactory {
       infoCard.classList.add("infocard");
       likeHeart.classList.add("fa-regular", "fa-heart");
       likeHeart.setAttribute("aria-label", "likes");
-      
+      likeHeart.setAttribute("tabindex", "0");
+
       likeHeart.addEventListener("click", () => {
           if (likeHeart.classList.contains("fa-regular")) {
             likeHeart.classList.remove("fa-regular");
@@ -65,6 +76,25 @@ class MediaFactory {
           }
           
         });
+
+        likeHeart.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter') {
+              if (likeHeart.classList.contains("fa-regular")) {
+                  likeHeart.classList.remove("fa-regular");
+                  likeHeart.classList.add("fa-solid");
+                  this.likes++;
+                  likeCounter.textContent = `${this.likes}`;
+                  totalCountUpdate.textContent = (parseInt(totalCountUpdate.textContent) + 1);
+              } else {
+                  likeHeart.classList.remove("fa-solid");
+                  likeHeart.classList.add("fa-regular");
+                  this.likes--;
+                  likeCounter.textContent = `${this.likes}`;
+                  totalCountUpdate.textContent = (parseInt(totalCountUpdate.textContent) - 1);
+              }
+          }
+      });
+       
 
      //Texte inséré en éléments HTML
       p.textContent = `${this.title}`;
