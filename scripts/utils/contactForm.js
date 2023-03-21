@@ -3,7 +3,6 @@ const modalBtn = document.querySelector(".open_btn");
 const validBtn = document.querySelector(".valid_btn");
 const closeBtn = document.querySelector(".close_btn");
 
-//const form =  document.getElementById("form"); 
 const first =  document.getElementById("first");
 const firstError =  document.getElementById("error_first");
 const last =  document.getElementById("last")
@@ -18,6 +17,11 @@ closeBtn.addEventListener("click", closeModal);
 
 validBtn.addEventListener("click", onSubmit);
 
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    closeModal();
+  }
+});
 
 //  Ajouter validation ou messages d'erreur #3 
 function onSubmit(event) {
@@ -39,7 +43,7 @@ let isValid = true;
 
   }
   if (last.value === '' || last.value.length < 2){ // Caractère absent ou inferieur à 2
-    //--#3------ Ajouter validation ou messages d'erreur #3  ---------
+    //Ajouter validation ou messages d'erreur
     lastError.textContent ="Veuillez entrer 2 caractères ou plus pour le champ du nom.";
     lastError.style.fontSize = "14px"; 
     lastError.style.color ="white"; 
