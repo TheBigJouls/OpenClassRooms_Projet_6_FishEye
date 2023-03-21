@@ -67,13 +67,14 @@ class LightBox {
     });
 
     document.addEventListener("keydown", (event) => {
-      if (event.keyCode === 27) {
+      if (event.key === "Escape") {
         this.hide();
-      } else if (event.keyCode === 37) {
+      } else if (event.key === "ArrowLeft") {
         this.prevMedia();
-      } else if (event.keyCode === 39) {
+      } else if (event.key === "ArrowRight") {
         this.nextMedia();
       }
+      
 
     });
   }
@@ -99,7 +100,7 @@ class LightBox {
     this.galleryIndex = mediaIndex;
     const mediaContainer = this.modal.querySelector(".media-content");
     const media = this.mediasData[this.galleryIndex];
-    
+
     if (media.image) {
       mediaContainer.innerHTML = `<img class="media" src="${this.mediaPath}${media.image}" aria-label="${media.title}, close-up view">`;
     } else if (media.video) {
